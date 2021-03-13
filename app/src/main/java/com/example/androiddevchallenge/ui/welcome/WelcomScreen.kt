@@ -89,7 +89,6 @@ fun WelcomeScreen(onClickLogInButton: () -> Unit) {
                     style = MaterialTheme.typography.subtitle1
                 )
 
-
                 StyledButton(
                     "Create account",
                     modifier = Modifier.paddingFromBaseline(top = 40.dp)
