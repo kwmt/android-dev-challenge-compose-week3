@@ -34,7 +34,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.FirstBaseline
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -127,7 +126,8 @@ private fun AgreeText(modifier: Modifier = Modifier) {
         addStyle(
             style = SpanStyle(
                 textDecoration = TextDecoration.Underline
-            ), start = startTosIndex, end = endTosIndex
+            ),
+            start = startTosIndex, end = endTosIndex
         )
         addStringAnnotation(
             tag = "TOS",
