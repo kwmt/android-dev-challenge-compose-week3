@@ -15,6 +15,7 @@
  */
 package com.example.androiddevchallenge
 
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
@@ -22,10 +23,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.MainDestinations.CART_ROUTE
+import com.example.androiddevchallenge.MainDestinations.FAVORITES_ROUTE
 import com.example.androiddevchallenge.MainDestinations.HOME_ROUTE
 import com.example.androiddevchallenge.MainDestinations.LOGIN_ROUTE
+import com.example.androiddevchallenge.MainDestinations.PROFILE_ROUTE
 import com.example.androiddevchallenge.MainDestinations.WELCOME_ROUTE
-import com.example.androiddevchallenge.ui.home.HomeScreen
+import com.example.androiddevchallenge.ui.BottomNavigationScreen
 import com.example.androiddevchallenge.ui.login.LoginScreen
 import com.example.androiddevchallenge.ui.welcome.WelcomeScreen
 
@@ -33,6 +37,9 @@ object MainDestinations {
     const val WELCOME_ROUTE = "welcome"
     const val LOGIN_ROUTE = "login"
     const val HOME_ROUTE = "home"
+    const val FAVORITES_ROUTE = "favorites"
+    const val PROFILE_ROUTE = "profile"
+    const val CART_ROUTE = "cart"
 }
 
 @Composable
@@ -47,9 +54,23 @@ fun NavGraph(startDestination: String = WELCOME_ROUTE) {
             LoginScreen(actions.toHomeScreen)
         }
         composable(HOME_ROUTE) {
-            HomeScreen()
+            BottomNavigationScreen(navController, actions.onBottomItemClick)
+        }
+        composable(FAVORITES_ROUTE) {
+            BottomNavigationScreen(navController, actions.onBottomItemClick)
+        }
+        composable(PROFILE_ROUTE) {
+            BottomNavigationScreen(navController, actions.onBottomItemClick)
+        }
+        composable(CART_ROUTE) {
+            BottomNavigationScreen(navController, actions.onBottomItemClick)
         }
     }
+}
+
+@Composable
+fun DummyScreen(text: String) {
+    Text(text)
 }
 
 class MainActions(navController: NavController) {
@@ -58,5 +79,8 @@ class MainActions(navController: NavController) {
     }
     val toHomeScreen: () -> Unit = {
         navController.navigate(HOME_ROUTE)
+    }
+    val onBottomItemClick: (route: String) -> Unit = { route ->
+        navController.navigate(route)
     }
 }
