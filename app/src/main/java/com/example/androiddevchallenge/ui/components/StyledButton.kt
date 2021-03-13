@@ -46,7 +46,7 @@ fun StyledButton(text: String, onClick: () -> Unit) {
     ) {
         Text(
             text,
-            style = MaterialTheme.typography.button
+            style = DevChallengeTheme.typography.button
         )
     }
 }

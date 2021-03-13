@@ -19,6 +19,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
@@ -129,6 +130,10 @@ object DevChallengeTheme {
     val colors: DevChallengeColors
         @Composable
         get() = LocalDevChallengeColors.current
+
+    val typography: Typography
+        @Composable
+        get() = MaterialTheme.typography
 }
 
 @Stable
