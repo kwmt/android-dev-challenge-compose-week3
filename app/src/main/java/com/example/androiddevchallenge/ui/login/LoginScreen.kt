@@ -172,9 +172,7 @@ private fun AgreeText(modifier: Modifier = Modifier) {
         text = annotatedString,
         modifier = modifier
             .paddingFrom(FirstBaseline, before = 24.dp),
-//        textAlign = TextAlign.Center,
         style = DevChallengeTheme.typography.body2,
-//        color = DevChallengeTheme.colors.textBody2,
         onClick = {
             annotatedString.getStringAnnotations("TOS", it, it)
                 .firstOrNull()?.let { stringAnnotation ->
