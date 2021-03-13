@@ -199,7 +199,7 @@ class DevChallengeColors(
         private set
     var isDark by mutableStateOf(isDark)
         private set
-    var statusBar by mutableStateOf(primary)
+
     fun update(other: DevChallengeColors) {
         primary = other.primary
         secondary = other.secondary
