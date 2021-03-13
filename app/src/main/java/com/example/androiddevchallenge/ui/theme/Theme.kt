@@ -92,12 +92,22 @@ private val DarkColorPalette = DevChallengeColors(
 )
 
 @Composable
+fun surfaceColorPrimary(): Color {
+    return DevChallengeTheme.colors.primary
+}
+@Composable
+fun surfaceColorBackground(): Color {
+    return DevChallengeTheme.colors.background
+}
+
+@Composable
 fun DevChallengeScaffold(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    surfaceColor: @Composable () -> Color = { surfaceColorPrimary() },
     content: @Composable() () -> Unit
 ) {
     MyTheme(darkTheme) {
-        Surface(color = DevChallengeTheme.colors.primary) {
+        Surface(color = surfaceColor()) {
             content()
         }
     }
@@ -130,7 +140,6 @@ object DevChallengeTheme {
     val colors: DevChallengeColors
         @Composable
         get() = LocalDevChallengeColors.current
-
     val typography: Typography
         @Composable
         get() = MaterialTheme.typography

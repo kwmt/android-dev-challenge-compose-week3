@@ -44,71 +44,72 @@ import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
 
 @Composable
 fun WelcomeScreen(onClickLogInButton: () -> Unit) {
-    Box(
-        modifier = Modifier
-//            .background(color = MaterialTheme.colors.background)
-            .fillMaxSize()
-    ) {
-        Image(
-            painterResource(id = R.drawable.welcome_bg),
-            contentDescription = null,
-            contentScale = ContentScale.FillBounds,
-            modifier = Modifier.align(Alignment.TopStart)
-        )
-
-        Column(
-            modifier = Modifier.padding(top = 72.dp)
+    DevChallengeScaffold {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
         ) {
             Image(
-                painter = painterResource(id = R.drawable.welcome_illos),
+                painterResource(id = R.drawable.welcome_bg),
                 contentDescription = null,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .offset(x = 88.dp)
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier.align(Alignment.TopStart)
             )
+
             Column(
-                modifier = Modifier
-                    .padding(top = 48.dp)
-                    .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally),
-//                    .background(color = MaterialTheme.colors.background),
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.padding(top = 72.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.logo),
+                    painter = painterResource(id = R.drawable.welcome_illos),
                     contentDescription = null,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
-
-                Text(
-                    "Beautiful home garden solutions",
+                    contentScale = ContentScale.Fit,
                     modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .paddingFromBaseline(bottom = 32.dp),
-                    color = DevChallengeTheme.colors.textSubtitle1,
-                    style = MaterialTheme.typography.subtitle1
+                        .offset(x = 88.dp)
                 )
-
-                StyledButton(
-                    "Create account",
-                    modifier = Modifier.paddingFromBaseline(top = 40.dp)
+                Column(
+                    modifier = Modifier
+                        .padding(top = 48.dp)
+                        .fillMaxWidth()
+                        .align(Alignment.CenterHorizontally),
+//                    .background(color = MaterialTheme.colors.background),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // TODO
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                TextButton(
-                    onClick = onClickLogInButton,
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color.Transparent,
-                        contentColor = DevChallengeTheme.colors.textButton2
-                    ),
-                ) {
-                    Text(
-                        "Log in",
-                        style = MaterialTheme.typography.button
+                    Image(
+                        painter = painterResource(id = R.drawable.logo),
+                        contentDescription = null,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
                     )
+
+                    Text(
+                        "Beautiful home garden solutions",
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                            .paddingFromBaseline(bottom = 32.dp),
+                        color = DevChallengeTheme.colors.textSubtitle1,
+                        style = MaterialTheme.typography.subtitle1
+                    )
+
+                    StyledButton(
+                        "Create account",
+                        modifier = Modifier.paddingFromBaseline(top = 40.dp)
+                    ) {
+                        // TODO
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    TextButton(
+                        onClick = onClickLogInButton,
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = Color.Transparent,
+                            contentColor = DevChallengeTheme.colors.textButton2
+                        ),
+                    ) {
+                        Text(
+                            "Log in",
+                            style = MaterialTheme.typography.button
+                        )
+                    }
                 }
             }
         }

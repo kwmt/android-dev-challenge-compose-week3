@@ -46,9 +46,7 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun MyApp() {
     ProvideWindowInsets {
-        DevChallengeScaffold {
-            NavGraph()
-        }
+        NavGraph()
     }
 }
 
