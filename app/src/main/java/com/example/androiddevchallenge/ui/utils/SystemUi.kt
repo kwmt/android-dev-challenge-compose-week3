@@ -74,7 +74,8 @@ private class SystemUiControllerImpl(private val window: Window) : SystemUiContr
             darkIcons && Build.VERSION.SDK_INT < 23 -> transformColorForLightContent(color)
             else -> color
         }
-        window.statusBarColor = statusBarColor.toArgb()
+        // ステータスバーのカラーは変更しない
+//        window.statusBarColor = statusBarColor.toArgb()
 
         if (Build.VERSION.SDK_INT >= 23) {
             @Suppress("DEPRECATION")

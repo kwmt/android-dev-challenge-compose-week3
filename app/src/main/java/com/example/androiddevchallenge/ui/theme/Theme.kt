@@ -18,6 +18,9 @@ package com.example.androiddevchallenge.ui.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
@@ -30,6 +33,26 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.example.androiddevchallenge.ui.utils.LocalSysUiController
 
+//private val LightColors = lightColors(
+//    primary = Pink100,
+//    secondary = Pink900,
+//    background = White,
+//    surface = White850,
+//    onPrimary = Gray,
+//    onSecondary = White,
+//    onBackground = Gray,
+//    onSurface = Gray
+//)
+//private val DarkColors = darkColors(
+//    primary = Green900,
+//    secondary = Green300,
+//    background = Gray,
+//    surface = White150,
+//    onPrimary = White,
+//    onSecondary = Gray,
+//    onBackground = White,
+//    onSurface = White850
+//)
 private val LightColorPalette = DevChallengeColors(
     primary = Pink100,
     secondary = Pink900,
@@ -70,20 +93,30 @@ private val DarkColorPalette = DevChallengeColors(
 )
 
 @Composable
-fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+fun DevChallengeScaffold(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable() () -> Unit
+) {
+    MyTheme(darkTheme) {
+        Surface(color = DevChallengeTheme.colors.primary) {
+            content()
+        }
+    }
+}
+
+@Composable
+fun MyTheme(darkTheme: Boolean, content: @Composable() () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
         LightColorPalette
     }
-
     val sysUiController = LocalSysUiController.current
     SideEffect {
         sysUiController.setSystemBarsColor(
             color = colors.background //.copy(alpha = AlphaNearOpaque)
         )
     }
-
     ProvideDevChallengeColors(colors) {
         MaterialTheme(
             colors = debugColors(darkTheme),
@@ -154,7 +187,7 @@ class DevChallengeColors(
         private set
     var isDark by mutableStateOf(isDark)
         private set
-
+    var statusBar by mutableStateOf(primary)
     fun update(other: DevChallengeColors) {
         primary = other.primary
         secondary = other.secondary
