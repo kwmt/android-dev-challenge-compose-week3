@@ -20,9 +20,17 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
+import com.example.androiddevchallenge.ui.theme.surfaceColorBackground
 
 @Composable
 fun HomeScreen() {
+    DevChallengeScaffold(surfaceColor = { surfaceColorBackground() }) {
+        HomeScreenImpl()
+    }
+}
+
+@Composable
+fun HomeScreenImpl() {
     Column {
         Text("home")
     }
