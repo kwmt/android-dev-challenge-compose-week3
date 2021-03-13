@@ -56,7 +56,7 @@ fun MyApp() {
 @Composable
 fun LightPreview() {
     DevChallengeScaffold {
-        WelcomeScreen()
+        WelcomeScreen { }
     }
 }
 
@@ -64,6 +64,6 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     DevChallengeScaffold(darkTheme = true) {
-        WelcomeScreen()
+        WelcomeScreen {}
     }
 }

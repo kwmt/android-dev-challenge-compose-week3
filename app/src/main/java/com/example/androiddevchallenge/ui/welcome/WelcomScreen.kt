@@ -43,7 +43,7 @@ import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
 import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(onClickLogInButton: () -> Unit) {
     Box(
         modifier = Modifier
 //            .background(color = MaterialTheme.colors.background)
@@ -95,7 +95,7 @@ fun WelcomeScreen() {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 TextButton(
-                    onClick = {},
+                    onClick = onClickLogInButton,
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Transparent,
                         contentColor = DevChallengeTheme.colors.textButton2
@@ -115,7 +115,7 @@ fun WelcomeScreen() {
 @Composable
 fun LightPreview() {
     DevChallengeScaffold {
-        WelcomeScreen()
+        WelcomeScreen {}
     }
 }
 
@@ -123,6 +123,6 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     DevChallengeScaffold(darkTheme = true) {
-        WelcomeScreen()
+        WelcomeScreen {}
     }
 }

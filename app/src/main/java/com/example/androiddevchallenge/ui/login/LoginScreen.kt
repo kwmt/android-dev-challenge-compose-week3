@@ -15,19 +15,24 @@
  */
 package com.example.androiddevchallenge.ui.login
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.androiddevchallenge.ui.components.StyledButton
 import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(onClickLoginButton: () -> Unit) {
+    Column {
+        StyledButton(text = "Log in", onClick = onClickLoginButton)
+    }
 }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun LightPreview() {
     DevChallengeScaffold {
-        LoginScreen()
+        LoginScreen {}
     }
 }
 
@@ -35,6 +40,6 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     DevChallengeScaffold(darkTheme = true) {
-        LoginScreen()
+        LoginScreen {}
     }
 }

@@ -16,8 +16,11 @@
 package com.example.androiddevchallenge
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.MainDestinations.HOME_ROUTE
 import com.example.androiddevchallenge.MainDestinations.LOGIN_ROUTE
@@ -35,16 +38,25 @@ object MainDestinations {
 @Composable
 fun NavGraph(startDestination: String = WELCOME_ROUTE) {
     val navController = rememberNavController()
-
+    val actions = remember(navController) { MainActions(navController) }
     NavHost(navController = navController, startDestination = startDestination) {
         composable(WELCOME_ROUTE) {
-            WelcomeScreen()
+            WelcomeScreen(actions.toLoginScreen)
         }
         composable(LOGIN_ROUTE) {
-            LoginScreen()
+            LoginScreen(actions.toHomeScreen)
         }
         composable(HOME_ROUTE) {
             HomeScreen()
         }
+    }
+}
+
+class MainActions(navController: NavController) {
+    val toLoginScreen: () -> Unit = {
+        navController.navigate(LOGIN_ROUTE)
+    }
+    val toHomeScreen: () -> Unit = {
+        navController.navigate(HOME_ROUTE)
     }
 }
