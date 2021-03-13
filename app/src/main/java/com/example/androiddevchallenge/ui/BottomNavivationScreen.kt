@@ -28,14 +28,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.KEY_ROUTE
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.MainDestinations.CART_ROUTE
 import com.example.androiddevchallenge.MainDestinations.FAVORITES_ROUTE
 import com.example.androiddevchallenge.MainDestinations.HOME_ROUTE
 import com.example.androiddevchallenge.MainDestinations.PROFILE_ROUTE
+import com.example.androiddevchallenge.ui.home.HomeScreen
 
-val bottomNavigationItems = listOf(
+private val bottomNavigationItems = listOf(
     BottomNavigationScreens.Home,
     BottomNavigationScreens.Favorites,
     BottomNavigationScreens.Profile,
@@ -43,20 +49,50 @@ val bottomNavigationItems = listOf(
 )
 
 @Composable
-fun BottomNavigationScreen(navController: NavController, onBottomItemClick: (String) -> Unit) {
+fun BottomNavigationScreen() {
+    val navController = rememberNavController()
+
     Scaffold(
         bottomBar = {
-            SpookyAppBottomNavigation(navController, items = bottomNavigationItems, onBottomItemClick)
+            SpookyAppBottomNavigation(
+                navController,
+                items = bottomNavigationItems,
+            )
         }
     ) {
+        MainScreenNavigationConfigurations(navController)
     }
+}
+
+@Composable
+private fun MainScreenNavigationConfigurations(
+    navController: NavHostController
+) {
+    NavHost(navController, startDestination = HOME_ROUTE) {
+        composable(HOME_ROUTE) {
+            HomeScreen()
+        }
+        composable(FAVORITES_ROUTE) {
+            DummyScreen(FAVORITES_ROUTE)
+        }
+        composable(PROFILE_ROUTE) {
+            DummyScreen(PROFILE_ROUTE)
+        }
+        composable(CART_ROUTE) {
+            DummyScreen(CART_ROUTE)
+        }
+    }
+}
+
+@Composable
+private fun DummyScreen(text: String) {
+    Text(text)
 }
 
 @Composable
 fun SpookyAppBottomNavigation(
     navController: NavController,
     items: List<BottomNavigationScreens>,
-    onBottomItemClick: (String) -> Unit
 ) {
     BottomNavigation {
         val currentRoute = currentRoute(navController)
@@ -67,7 +103,7 @@ fun SpookyAppBottomNavigation(
                 selected = currentRoute == screen.route,
                 onClick = {
                     if (currentRoute != screen.route) {
-                        onBottomItemClick(screen.route)
+                        navController.navigate(screen.route)
                     }
                 }
             )
