@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 fun MyApp() {
     ProvideWindowInsets {
         DevChallengeScaffold {
-            WelcomeScreen()
+            NavGraph()
         }
     }
 }

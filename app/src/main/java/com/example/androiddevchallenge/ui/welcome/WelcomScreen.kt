@@ -25,8 +25,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
-import androidx.compose.foundation.shape.CornerSize
-import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -40,6 +38,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.ui.components.StyledButton
 import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
 import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
 
@@ -89,24 +88,8 @@ fun WelcomeScreen() {
                     color = DevChallengeTheme.colors.textSubtitle1,
                     style = MaterialTheme.typography.subtitle1
                 )
-                Button(
-                    onClick = { /*TODO*/ },
-                    shape = MaterialTheme.shapes.medium.copy(
-                        all = CornerSize(24.dp),
-                    ),
-                    modifier = Modifier
-                        .height(48.dp)
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = DevChallengeTheme.colors.secondary,
-                        contentColor = DevChallengeTheme.colors.textButton1
-                    ),
-                ) {
-                    Text(
-                        "Create account",
-                        style = MaterialTheme.typography.button
-                    )
+                StyledButton("Create account") {
+                    // TODO
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
