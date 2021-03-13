@@ -16,25 +16,55 @@
 package com.example.androiddevchallenge.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-private val DarkColorPalette = darkColors(
-    primary = Green900,
-    primaryVariant = purple700,
-    secondary = Green300
-)
-private val LightColorPalette = lightColors(
+private val LightColorPalette = DevChallengeColors(
     primary = Pink100,
-    primaryVariant = purple700,
-    secondary = teal200
+    secondary = Pink900,
+    background = White,
+    surface = White850,
+    onPrimary = Gray,
+    onSecondary = White,
+    onBackground = Gray,
+    onSurface = Gray,
+    textButton1 = White,
+    textButton2 = Pink900,
+    textH1 = Gray,
+    textH2 = Gray,
+    textSubtitle1 = Gray,
+    textBody1 = Gray,
+    textBody2 = Gray,
+    textCaption = Gray,
+    isDark = false
+)
+private val DarkColorPalette = DevChallengeColors(
+    primary = Green900,
+    secondary = Green300,
+    background = Gray,
+    surface = White150,
+    onPrimary = White,
+    onSecondary = Gray,
+    onBackground = White,
+    onSurface = White850,
+    textButton1 = Gray,
+    textButton2 = White,
+    textH1 = White,
+    textH2 = White,
+    textSubtitle1 = White,
+    textBody1 = White,
+    textBody2 = White,
+    textCaption = White,
+    isDark = false
 )
 
 @Composable
@@ -45,12 +75,20 @@ fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() (
         LightColorPalette
     }
 
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content
-    )
+    ProvideDevChallengeColors(colors) {
+        MaterialTheme(
+            colors = debugColors(darkTheme),
+            typography = typography,
+            shapes = shapes,
+            content = content
+        )
+    }
+}
+
+object DevChallengeTheme {
+    val colors: DevChallengeColors
+        @Composable
+        get() = LocalDevChallengeColors.current
 }
 
 @Stable
@@ -63,8 +101,14 @@ class DevChallengeColors(
     onSecondary: Color,
     onBackground: Color,
     onSurface: Color,
-    textPrimary: Color,
-    textSecondary: Color,
+    textButton1: Color, // 角丸ボタンの上のテキストカラー
+    textButton2: Color, // 枠なしボタンのテキストカラー
+    textH1: Color,
+    textH2: Color,
+    textSubtitle1: Color,
+    textBody1: Color,
+    textBody2: Color,
+    textCaption: Color,
     isDark: Boolean
 ) {
     var primary by mutableStateOf(primary)
@@ -83,9 +127,21 @@ class DevChallengeColors(
         private set
     var onSurface by mutableStateOf(onSurface)
         private set
-    var textPrimary by mutableStateOf(textPrimary)
+    var textButton1 by mutableStateOf(textButton1)
         private set
-    var textSecondary by mutableStateOf(textSecondary)
+    var textButton2 by mutableStateOf(textButton2)
+        private set
+    var textH1 by mutableStateOf(textH1)
+        private set
+    var textH2 by mutableStateOf(textH2)
+        private set
+    var textSubtitle1 by mutableStateOf(textSubtitle1)
+        private set
+    var textBody1 by mutableStateOf(textBody1)
+        private set
+    var textBody2 by mutableStateOf(textBody2)
+        private set
+    var textCaption by mutableStateOf(textCaption)
         private set
     var isDark by mutableStateOf(isDark)
         private set
@@ -94,13 +150,57 @@ class DevChallengeColors(
         primary = other.primary
         secondary = other.secondary
         background = other.background
-        surface = other.surface,
+        surface = other.surface
         onPrimary = other.onPrimary
         onSecondary = other.onSecondary
         onBackground = other.onBackground
         onSurface = other.onSurface
-        textPrimary = other.textPrimary
-        textSecondary = other.textSecondary
+        textButton1 = other.textButton1
+        textButton2 = other.textButton2
+        textH1 = other.textH1
+        textH2 = other.textH2
+        textSubtitle1 = other.textSubtitle1
+        textBody1 = other.textBody1
+        textBody2 = other.textBody2
+        textCaption = other.textCaption
         isDark = other.isDark
     }
 }
+
+@Composable
+fun ProvideDevChallengeColors(
+    colors: DevChallengeColors,
+    content: @Composable () -> Unit
+) {
+    val colorPalette = remember { colors }
+    colorPalette.update(colors)
+    CompositionLocalProvider(LocalDevChallengeColors provides colorPalette, content = content)
+}
+
+private val LocalDevChallengeColors = staticCompositionLocalOf<DevChallengeColors> {
+    error("No JetsnackColorPalette provided")
+}
+
+/**
+ * A Material [Colors] implementation which sets all colors to [debugColor] to discourage usage of
+ * [MaterialTheme.colors] in preference to [DevChallengeTheme.colors].
+ */
+fun debugColors(
+    darkTheme: Boolean,
+    debugColor: Color = Color.Magenta
+) = Colors(
+    primary = debugColor,
+    primaryVariant = debugColor,
+    secondary = debugColor,
+    secondaryVariant = debugColor,
+    background = debugColor,
+    surface = debugColor,
+    error = debugColor,
+    onPrimary = debugColor,
+    onSecondary = debugColor,
+    onBackground = debugColor,
+    onSurface = debugColor,
+    onError = debugColor,
+    isLight = !darkTheme
+)
+
