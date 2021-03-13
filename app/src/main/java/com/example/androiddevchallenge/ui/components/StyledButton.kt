@@ -29,13 +29,13 @@ import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
 
 @Composable
-fun StyledButton(text: String, onClick: () -> Unit) {
+fun StyledButton(text: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Button(
         onClick = onClick,
         shape = MaterialTheme.shapes.medium.copy(
             all = CornerSize(24.dp),
         ),
-        modifier = Modifier
+        modifier = modifier
             .height(48.dp)
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp),
