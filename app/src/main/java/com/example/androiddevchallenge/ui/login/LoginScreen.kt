@@ -32,8 +32,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.FirstBaseline
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -111,40 +114,76 @@ fun LoginScreen(onClickLoginButton: () -> Unit) {
 
 @Composable
 private fun AgreeText(modifier: Modifier = Modifier) {
-    val a = buildAnnotatedString {
-        val str =
-            "By clicking below, you agree to our Terms of Use and consent to our Privacy Policy."
+    val annotatedString = buildAnnotatedString {
         val tos = "Terms of Use"
+        val pp = "Privacy Policy"
+        val str = "By clicking below, you agree to our $tos and consent to our $pp."
         val startTosIndex = str.indexOf(tos)
         val endTosIndex = startTosIndex + tos.length
-        val pp = "Privacy Policy"
         val startPpIndex = str.indexOf(pp)
         val endPpIndex = startPpIndex + pp.length
 
         append(str)
-
+        // 全体のテキストカラーを設定
+        addStyle(
+            style = ParagraphStyle(
+                textAlign = TextAlign.Center
+            ),
+            start = 0, end = str.length
+        )
+        // 全体のフォントスタイルを設定
+        addStyle(
+            style = SpanStyle(
+                color = DevChallengeTheme.colors.textBody2,
+            ),
+            start = 0, end = str.length
+        )
+        // TOSに下線をひく
         addStyle(
             style = SpanStyle(
                 textDecoration = TextDecoration.Underline
             ),
             start = startTosIndex, end = endTosIndex
         )
+        // PPに下線をひく
+        addStyle(
+            style = SpanStyle(
+                textDecoration = TextDecoration.Underline
+            ),
+            start = startPpIndex, end = endPpIndex
+        )
+        // TOSの下線のクリックイベント設定
         addStringAnnotation(
             tag = "TOS",
             annotation = "https://github.com/",
             start = startTosIndex,
             end = endTosIndex,
         )
+        // PPの下線のクリックイベント設定
+        addStringAnnotation(
+            tag = "PP",
+            annotation = "https://google.co.jp",
+            start = startPpIndex,
+            end = endPpIndex,
+        )
     }
-
+    val urlHandler = LocalUriHandler.current
     ClickableText(
-        text = a,
+        text = annotatedString,
         modifier = modifier
             .paddingFrom(FirstBaseline, before = 24.dp),
 //        textAlign = TextAlign.Center,
         style = DevChallengeTheme.typography.body2,
 //        color = DevChallengeTheme.colors.textBody2,
         onClick = {
+            annotatedString.getStringAnnotations("TOS", it, it)
+                .firstOrNull()?.let { stringAnnotation ->
+                    urlHandler.openUri(stringAnnotation.item)
+                }
+            annotatedString.getStringAnnotations("PP", it, it)
+                .firstOrNull()?.let { stringAnnotation ->
+                    urlHandler.openUri(stringAnnotation.item)
+                }
         }
     )
 }
