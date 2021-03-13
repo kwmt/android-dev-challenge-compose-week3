@@ -13,15 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
+package com.example.androiddevchallenge.ui.home
 
-import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
 
-val Pink100 = Color(0xFFFFF1F1)
-val Pink900 = Color(0xFF3F2C2C)
-val White = Color(0xFFFFFFFF)
-val White850 = Color(0xD9FFFFFF)
-val Gray = Color(0xFF232323)
-val Green900 = Color(0xFF2D382D)
-val Green300 = Color(0xFFB8C9B8)
-val White150 = Color(0x26FFFFFF)
+@Composable
+fun HomeScreen() {
+}
+
+@Preview("Light Theme", widthDp = 360, heightDp = 640)
+@Composable
+fun LightPreview() {
+    DevChallengeScaffold {
+        HomeScreen()
+    }
+}
+
+@Preview("Dark Theme", widthDp = 360, heightDp = 640)
+@Composable
+fun DarkPreview() {
+    DevChallengeScaffold(darkTheme = true) {
+        HomeScreen()
+    }
+}
