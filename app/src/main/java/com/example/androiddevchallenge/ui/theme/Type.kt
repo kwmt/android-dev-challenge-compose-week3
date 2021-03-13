@@ -60,7 +60,8 @@ val typography = Typography(
     button = TextStyle(
         fontFamily = NunitoSans,
         fontWeight = FontWeight.W600,
-        fontSize = 14.sp
+        fontSize = 14.sp,
+        letterSpacing = 1.sp
     ),
     caption = TextStyle(
         fontFamily = NunitoSans,
