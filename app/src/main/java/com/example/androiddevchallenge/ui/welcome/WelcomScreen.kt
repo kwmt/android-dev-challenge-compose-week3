@@ -65,7 +65,9 @@ fun WelcomeScreen() {
                     "Beautiful home garden solutions",
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
-                        .paddingFromBaseline(top = 32.dp),
+                        .paddingFromBaseline(bottom = 32.dp),
+                    color = DevChallengeTheme.colors.textSubtitle1,
+                    style = MaterialTheme.typography.subtitle1
                 )
             }
         }

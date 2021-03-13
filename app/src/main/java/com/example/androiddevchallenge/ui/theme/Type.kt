@@ -67,4 +67,4 @@ val typography = Typography(
         fontWeight = FontWeight.W600,
         fontSize = 12.sp
     ),
-    )
+)
