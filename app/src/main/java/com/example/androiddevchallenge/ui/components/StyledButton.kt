@@ -37,8 +37,7 @@ fun StyledButton(text: String, modifier: Modifier = Modifier, onClick: () -> Uni
         ),
         modifier = modifier
             .height(48.dp)
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp),
+            .fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = DevChallengeTheme.colors.secondary,
             contentColor = DevChallengeTheme.colors.textButton1

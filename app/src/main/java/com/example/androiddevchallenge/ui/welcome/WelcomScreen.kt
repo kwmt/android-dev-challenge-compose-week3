@@ -91,7 +91,9 @@ fun WelcomeScreen(onClickLogInButton: () -> Unit) {
 
                     StyledButton(
                         "Create account",
-                        modifier = Modifier.paddingFromBaseline(top = 40.dp)
+                        modifier = Modifier
+                            .paddingFromBaseline(top = 40.dp)
+                            .padding(horizontal = 16.dp)
                     ) {
                         // TODO
                     }
