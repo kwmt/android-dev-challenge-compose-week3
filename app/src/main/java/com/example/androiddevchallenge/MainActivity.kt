@@ -16,20 +16,14 @@
 package com.example.androiddevchallenge
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
-import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
-import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.ui.utils.LocalSysUiController
 import com.example.androiddevchallenge.ui.utils.SystemUiController
 import com.example.androiddevchallenge.ui.welcome.WelcomeScreen

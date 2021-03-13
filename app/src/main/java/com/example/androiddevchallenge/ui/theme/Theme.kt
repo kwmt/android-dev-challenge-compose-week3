@@ -19,8 +19,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
@@ -33,7 +31,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.example.androiddevchallenge.ui.utils.LocalSysUiController
 
-//private val LightColors = lightColors(
+// private val LightColors = lightColors(
 //    primary = Pink100,
 //    secondary = Pink900,
 //    background = White,
@@ -42,8 +40,8 @@ import com.example.androiddevchallenge.ui.utils.LocalSysUiController
 //    onSecondary = White,
 //    onBackground = Gray,
 //    onSurface = Gray
-//)
-//private val DarkColors = darkColors(
+// )
+// private val DarkColors = darkColors(
 //    primary = Green900,
 //    secondary = Green300,
 //    background = Gray,
@@ -52,7 +50,7 @@ import com.example.androiddevchallenge.ui.utils.LocalSysUiController
 //    onSecondary = Gray,
 //    onBackground = White,
 //    onSurface = White850
-//)
+// )
 private val LightColorPalette = DevChallengeColors(
     primary = Pink100,
     secondary = Pink900,
@@ -114,7 +112,7 @@ fun MyTheme(darkTheme: Boolean, content: @Composable() () -> Unit) {
     val sysUiController = LocalSysUiController.current
     SideEffect {
         sysUiController.setSystemBarsColor(
-            color = colors.background //.copy(alpha = AlphaNearOpaque)
+            color = colors.background // .copy(alpha = AlphaNearOpaque)
         )
     }
     ProvideDevChallengeColors(colors) {
@@ -245,4 +243,3 @@ fun debugColors(
     onError = debugColor,
     isLight = !darkTheme
 )
-
