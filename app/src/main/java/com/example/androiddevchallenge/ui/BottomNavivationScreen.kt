@@ -101,7 +101,9 @@ private fun AppBottomNavigation(
     navController: NavController,
     items: List<BottomNavigationScreens>,
 ) {
-    BottomNavigation {
+    BottomNavigation(
+        backgroundColor = DevChallengeTheme.colors.primary
+    ) {
         val currentRoute = currentRoute(navController)
         items.forEach { screen ->
             BottomNavigationItem(
