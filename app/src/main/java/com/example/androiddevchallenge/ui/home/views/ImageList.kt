@@ -16,13 +16,18 @@
 package com.example.androiddevchallenge.ui.home.views
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -39,11 +44,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.ui.components.DrawableResImage
 import com.example.androiddevchallenge.ui.home.Garden
+import com.example.androiddevchallenge.ui.home.HomeViewModel
 import com.example.androiddevchallenge.ui.home.LocalCompositionViewModel
+import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
 import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
 
 @Composable
@@ -77,9 +85,9 @@ private fun GardenListItem(garden: Garden) {
         )
         Row(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(end = 16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
+//            horizontalArrangement = Arrangement.,
         ) {
             Column {
                 Text(
@@ -93,21 +101,63 @@ private fun GardenListItem(garden: Garden) {
                 Text(
                     garden.description,
                     modifier = Modifier
-                        .paddingFromBaseline(bottom = 24.dp)
                         .padding(start = 16.dp),
                     style = DevChallengeTheme.typography.body1,
                     color = DevChallengeTheme.colors.textBody1
                 )
-            }
-            Checkbox(
-                checked = checkedState, onCheckedChange = { checkedState = it },
-                modifier = Modifier.align(Alignment.CenterVertically),
-                colors = CheckboxDefaults.colors(
-                    uncheckedColor = DevChallengeTheme.colors.secondary,
-                    checkedColor = DevChallengeTheme.colors.secondary,
-                    checkmarkColor = DevChallengeTheme.colors.onSecondary,
+                Divider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .offset(x = 8.dp)
+                        .paddingFromBaseline(top = 24.dp)
+                    ,
+                    color = DevChallengeTheme.colors.secondary
                 )
-            )
+            }
+            Row(
+                modifier = Modifier.fillMaxHeight(),
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Checkbox(
+                    checked = checkedState, onCheckedChange = { checkedState = it },
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    colors = CheckboxDefaults.colors(
+                        uncheckedColor = DevChallengeTheme.colors.secondary,
+                        checkedColor = DevChallengeTheme.colors.secondary,
+                        checkmarkColor = DevChallengeTheme.colors.onSecondary,
+                    )
+                )
+            }
         }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewList() {
+    val garden = HomeViewModel().gardens[0]
+    var checkedState by remember { mutableStateOf(false) }
+
+    DevChallengeScaffold {
+        GardenListItem(garden)
+//        Column {
+//            Text(
+//                garden.name,
+//                modifier = Modifier
+//                    .paddingFromBaseline(top = 24.dp)
+//                    .padding(start = 16.dp),
+//                style = DevChallengeTheme.typography.h2.copy(letterSpacing = 0.sp),
+//                color = DevChallengeTheme.colors.textH2
+//            )
+//            Text(
+//                garden.description,
+//                modifier = Modifier
+//                    .paddingFromBaseline(bottom = 24.dp)
+//                    .padding(start = 16.dp),
+//                style = DevChallengeTheme.typography.body1,
+//                color = DevChallengeTheme.colors.textBody1
+//            )
+//        }
     }
 }
