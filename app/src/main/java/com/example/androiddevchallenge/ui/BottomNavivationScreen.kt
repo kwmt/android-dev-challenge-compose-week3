@@ -115,7 +115,10 @@ private fun AppBottomNavigation(
                 selected = currentRoute == screen.route,
                 onClick = {
                     if (currentRoute != screen.route) {
-                        navController.navigate(screen.route)
+                        navController.navigate(screen.route) {
+                            // BottomItemを切り替えまくっても、バックで、startDestinationに戻る
+                            popUpTo = navController.graph.startDestination
+                        }
                     }
                 },
                 selectedContentColor = DevChallengeTheme.colors.textCaption
