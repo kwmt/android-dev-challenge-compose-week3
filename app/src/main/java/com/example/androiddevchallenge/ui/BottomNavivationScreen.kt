@@ -18,10 +18,12 @@ package com.example.androiddevchallenge.ui
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
@@ -102,19 +104,21 @@ private fun AppBottomNavigation(
     items: List<BottomNavigationScreens>,
 ) {
     BottomNavigation(
-        backgroundColor = DevChallengeTheme.colors.primary
+        backgroundColor = DevChallengeTheme.colors.primary,
+        contentColor = DevChallengeTheme.colors.textCaption,
     ) {
         val currentRoute = currentRoute(navController)
         items.forEach { screen ->
             BottomNavigationItem(
-                icon = { screen.icon },
+                icon = { Icon(screen.icon, contentDescription = null) },
                 label = { Text(screen.resourceId) },
                 selected = currentRoute == screen.route,
                 onClick = {
                     if (currentRoute != screen.route) {
                         navController.navigate(screen.route)
                     }
-                }
+                },
+                selectedContentColor = DevChallengeTheme.colors.textCaption
             )
         }
     }
@@ -132,7 +136,7 @@ sealed class BottomNavigationScreens(
     val icon: ImageVector
 ) {
     object Home : BottomNavigationScreens(HOME_ROUTE, "Home", Icons.Filled.Home)
-    object Favorites : BottomNavigationScreens(FAVORITES_ROUTE, "Favorites", Icons.Filled.Favorite)
+    object Favorites : BottomNavigationScreens(FAVORITES_ROUTE, "Favorites", Icons.Filled.FavoriteBorder)
     object Profile : BottomNavigationScreens(PROFILE_ROUTE, "Profile", Icons.Filled.AccountCircle)
     object Cart : BottomNavigationScreens(CART_ROUTE, "Cart", Icons.Filled.ShoppingCart)
 }
