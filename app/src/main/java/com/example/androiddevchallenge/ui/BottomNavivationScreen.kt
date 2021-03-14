@@ -15,9 +15,9 @@
  */
 package com.example.androiddevchallenge.ui
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -40,6 +41,9 @@ import com.example.androiddevchallenge.MainDestinations.FAVORITES_ROUTE
 import com.example.androiddevchallenge.MainDestinations.HOME_ROUTE
 import com.example.androiddevchallenge.MainDestinations.PROFILE_ROUTE
 import com.example.androiddevchallenge.ui.home.HomeScreen
+import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
+import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
+import dev.chrisbanes.accompanist.insets.statusBarsPadding
 
 private val bottomNavigationItems = listOf(
     BottomNavigationScreens.Home,
@@ -51,10 +55,9 @@ private val bottomNavigationItems = listOf(
 @Composable
 fun BottomNavigationScreen() {
     val navController = rememberNavController()
-
-    Scaffold(
+    DevChallengeScaffold(
         bottomBar = {
-            SpookyAppBottomNavigation(
+            AppBottomNavigation(
                 navController,
                 items = bottomNavigationItems,
             )
@@ -86,11 +89,13 @@ private fun MainScreenNavigationConfigurations(
 
 @Composable
 private fun DummyScreen(text: String) {
-    Text(text)
+    Row(modifier = Modifier.statusBarsPadding()) {
+        Text(text, color = DevChallengeTheme.colors.textBody1)
+    }
 }
 
 @Composable
-fun SpookyAppBottomNavigation(
+private fun AppBottomNavigation(
     navController: NavController,
     items: List<BottomNavigationScreens>,
 ) {

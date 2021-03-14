@@ -18,6 +18,7 @@ package com.example.androiddevchallenge.ui.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
@@ -104,10 +105,11 @@ fun surfaceColorBackground(): Color {
 fun DevChallengeScaffold(
     darkTheme: Boolean = isSystemInDarkTheme(),
     surfaceColor: @Composable () -> Color = { surfaceColorPrimary() },
+    bottomBar: @Composable () -> Unit = {},
     content: @Composable() () -> Unit
 ) {
     MyTheme(darkTheme) {
-        Surface(color = surfaceColor()) {
+        Scaffold(backgroundColor = surfaceColor(), bottomBar = bottomBar) {
             content()
         }
     }
