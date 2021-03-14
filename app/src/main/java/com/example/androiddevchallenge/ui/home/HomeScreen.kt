@@ -45,7 +45,7 @@ fun HomeScreen() {
 
 @Composable
 fun HomeScreenImpl() {
-    Column(modifier = Modifier.padding(top = 40.dp)) {
+    Column(modifier = Modifier.padding(top = 40.dp, bottom = 56.dp)) {
         val modifier = Modifier.padding(horizontal = 16.dp)
         Search(modifier = modifier)
         HomeTitle(modifier = modifier, text = "Browse themes", 32.dp)
