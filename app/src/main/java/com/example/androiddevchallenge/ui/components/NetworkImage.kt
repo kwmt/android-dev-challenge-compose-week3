@@ -62,7 +62,7 @@ fun DrawableResImage(
 ) {
     CoilImage(
         data = drawableRes,
-        modifier = modifier.aspectRatio(17f / 12f),
+        modifier = modifier,
         contentDescription = contentDescription,
         contentScale = contentScale,
         loading = {

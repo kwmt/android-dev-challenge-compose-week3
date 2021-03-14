@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -66,7 +67,7 @@ fun CardRows(modifier: Modifier = Modifier) {
                         verticalArrangement = Arrangement.Center,
                     ) {
                         DrawableResImage(
-                            modifier = Modifier.requiredWidth(RowItemSize),
+                            modifier = Modifier.requiredWidth(RowItemSize).aspectRatio(17f / 12f),
                             drawableRes = theme.drawableRes,
                         )
 

@@ -55,7 +55,7 @@ fun HomeScreenImpl() {
             text = "Design your home again",
             40.dp - ElevationPaddingSize
         )
-        ImageList(modifier = modifier)
+        ImageList()
     }
 }
 
