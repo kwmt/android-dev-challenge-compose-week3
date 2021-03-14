@@ -1,4 +1,4 @@
-package com.example.androiddevchallenge.ui.home
+package com.example.androiddevchallenge.ui.home.views
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
