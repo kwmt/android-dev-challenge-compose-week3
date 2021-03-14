@@ -24,9 +24,7 @@ import com.example.androiddevchallenge.ui.theme.surfaceColorBackground
 
 @Composable
 fun HomeScreen() {
-    DevChallengeScaffold(surfaceColor = { surfaceColorBackground() }) {
-        HomeScreenImpl()
-    }
+    HomeScreenImpl()
 }
 
 @Composable

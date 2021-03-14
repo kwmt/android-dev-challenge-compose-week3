@@ -43,6 +43,7 @@ import com.example.androiddevchallenge.MainDestinations.PROFILE_ROUTE
 import com.example.androiddevchallenge.ui.home.HomeScreen
 import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
 import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
+import com.example.androiddevchallenge.ui.theme.surfaceColorBackground
 import dev.chrisbanes.accompanist.insets.statusBarsPadding
 
 private val bottomNavigationItems = listOf(
@@ -61,7 +62,8 @@ fun BottomNavigationScreen() {
                 navController,
                 items = bottomNavigationItems,
             )
-        }
+        },
+        surfaceColor = { surfaceColorBackground() }
     ) {
         MainScreenNavigationConfigurations(navController)
     }
