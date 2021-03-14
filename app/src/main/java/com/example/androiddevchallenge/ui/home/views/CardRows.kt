@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -35,8 +36,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.components.DrawableResImage
+import com.example.androiddevchallenge.ui.home.LocalCompositionViewModel
 import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
 
 private val RowItemSize = 136.dp
@@ -44,12 +45,13 @@ val ElevationPaddingSize = 8.dp
 
 @Composable
 fun CardRows(modifier: Modifier = Modifier) {
+    val viewModel = LocalCompositionViewModel.current
     LazyRow(
         modifier = modifier,
         horizontalArrangement = spacedBy(8.dp),
         contentPadding = PaddingValues(start = 16.dp, end = 16.dp),
         content = {
-            items(3) {
+            items(viewModel.themes) { theme ->
                 Card(
                     modifier = Modifier
                         .height(RowItemSize + ElevationPaddingSize)
@@ -65,7 +67,7 @@ fun CardRows(modifier: Modifier = Modifier) {
                     ) {
                         DrawableResImage(
                             modifier = Modifier.requiredWidth(RowItemSize),
-                            drawableRes = R.drawable.desert_chic,
+                            drawableRes = theme.drawableRes,
                         )
 
                         Box(
@@ -77,7 +79,7 @@ fun CardRows(modifier: Modifier = Modifier) {
                                     .align(Alignment.CenterStart)
                                     .padding(horizontal = 16.dp),
                                 textAlign = TextAlign.Start,
-                                text = "Desert chic",
+                                text = theme.name,
                                 style = DevChallengeTheme.typography.h2.copy(letterSpacing = 0.sp),
                                 color = DevChallengeTheme.colors.textH2,
                                 maxLines = 1,
