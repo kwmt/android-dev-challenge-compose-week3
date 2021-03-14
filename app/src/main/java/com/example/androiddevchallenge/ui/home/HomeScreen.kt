@@ -16,13 +16,21 @@
 package com.example.androiddevchallenge.ui.home
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFrom
+import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.AlignmentLine
+import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.ui.components.search.Search
 import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
+import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
 
 @Composable
 fun HomeScreen() {
@@ -32,8 +40,27 @@ fun HomeScreen() {
 @Composable
 fun HomeScreenImpl() {
     Column(modifier = Modifier.padding(top = 40.dp)) {
-        Search()
+        val modifier = Modifier.padding(horizontal = 16.dp)
+        Search(modifier = modifier)
+        HomeTitle(modifier = modifier, text = "Browse themes", 32.dp)
+        HomeTitle(modifier = modifier, text = "Design your home again", 40.dp)
     }
+}
+
+@Composable
+private fun HomeTitle(
+    modifier: Modifier = Modifier,
+    text: String,
+    before: Dp
+) {
+    Text(
+        modifier = modifier
+            .paddingFrom(alignmentLine = LastBaseline, before = before)
+            .fillMaxWidth(),
+        text = text,
+        style = DevChallengeTheme.typography.h1,
+        color = DevChallengeTheme.colors.textH1
+    )
 }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
