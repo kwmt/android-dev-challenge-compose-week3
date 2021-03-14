@@ -43,7 +43,7 @@ fun HomeScreenImpl() {
         val modifier = Modifier.padding(horizontal = 16.dp)
         Search(modifier = modifier)
         HomeTitle(modifier = modifier, text = "Browse themes", 32.dp)
-        CardRows(modifier = modifier)
+        CardRows()
         HomeTitle(modifier = modifier, text = "Design your home again", 40.dp)
         ImageList(modifier = modifier)
     }
