@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.ui.components.search.Search
 import com.example.androiddevchallenge.ui.home.views.CardRows
+import com.example.androiddevchallenge.ui.home.views.ElevationPaddingSize
 import com.example.androiddevchallenge.ui.home.views.ImageList
 import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
 import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
@@ -43,8 +44,12 @@ fun HomeScreenImpl() {
         val modifier = Modifier.padding(horizontal = 16.dp)
         Search(modifier = modifier)
         HomeTitle(modifier = modifier, text = "Browse themes", 32.dp)
-        CardRows()
-        HomeTitle(modifier = modifier, text = "Design your home again", 40.dp)
+        CardRows(modifier = Modifier.padding(top = 16.dp))
+        HomeTitle(
+            modifier = modifier,
+            text = "Design your home again",
+            40.dp - ElevationPaddingSize
+        )
         ImageList(modifier = modifier)
     }
 }
