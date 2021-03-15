@@ -51,7 +51,7 @@ fun HomeScreenImpl() {
         CardRows(modifier = Modifier.padding(top = 16.dp))
         HomeTitle(
             modifier = modifier,
-            text = "Design your home again",
+            text = "Design your home garden",
             40.dp - ElevationPaddingSize
         )
         ImageList()
