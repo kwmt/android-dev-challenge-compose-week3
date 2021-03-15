@@ -36,8 +36,7 @@ import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
 import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
 
 @Composable
-fun HomeScreen() {
-    val viewModel: HomeViewModel = viewModel()
+fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
     CompositionLocalProvider(LocalCompositionViewModel provides viewModel) {
         HomeScreenImpl()
     }
@@ -79,7 +78,7 @@ private fun HomeTitle(
 @Composable
 fun LightPreview() {
     DevChallengeScaffold {
-        HomeScreen()
+        HomeScreen(HomeViewModel())
     }
 }
 
@@ -87,6 +86,6 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     DevChallengeScaffold(darkTheme = true) {
-        HomeScreen()
+        HomeScreen(HomeViewModel())
     }
 }
