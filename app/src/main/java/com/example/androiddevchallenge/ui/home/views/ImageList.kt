@@ -84,7 +84,6 @@ private fun GardenListItem(garden: Garden) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(end = 16.dp),
-//            horizontalArrangement = Arrangement.,
         ) {
             Column {
                 Text(
