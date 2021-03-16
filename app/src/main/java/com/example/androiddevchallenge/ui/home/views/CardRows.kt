@@ -59,7 +59,7 @@ fun CardRows(modifier: Modifier = Modifier) {
                         .padding(bottom = ElevationPaddingSize),
                     shape = RoundedCornerShape(4.dp),
                     elevation = 4.dp,
-                    backgroundColor = DevChallengeTheme.colors.textBody1,
+                    backgroundColor = DevChallengeTheme.colors.onSecondary,
                 ) {
                     Column(
                         modifier = Modifier
