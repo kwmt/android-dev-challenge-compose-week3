@@ -15,14 +15,23 @@
  */
 package com.example.androiddevchallenge.ui.home
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFrom
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -52,7 +61,8 @@ fun HomeScreenImpl() {
         HomeTitle(
             modifier = modifier,
             text = "Design your home garden",
-            40.dp - ElevationPaddingSize
+            40.dp - ElevationPaddingSize,
+            isFilterIcon = true
         )
         ImageList()
     }
@@ -62,16 +72,30 @@ fun HomeScreenImpl() {
 private fun HomeTitle(
     modifier: Modifier = Modifier,
     text: String,
-    before: Dp
+    before: Dp,
+    isFilterIcon: Boolean = false
 ) {
-    Text(
-        modifier = modifier
-            .paddingFrom(alignmentLine = LastBaseline, before = before)
-            .fillMaxWidth(),
-        text = text,
-        style = DevChallengeTheme.typography.h1,
-        color = DevChallengeTheme.colors.textH1
-    )
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Text(
+            modifier = Modifier
+                .paddingFrom(alignmentLine = LastBaseline, before = before),
+            text = text,
+            style = DevChallengeTheme.typography.h1,
+            color = DevChallengeTheme.colors.textH1
+        )
+        if (isFilterIcon) {
+            Icon(
+                Icons.Filled.FilterList, contentDescription = null,
+                tint = DevChallengeTheme.colors.textBody1,
+                modifier = Modifier
+                    .size(24.dp)
+                    .align(Alignment.Bottom)
+            )
+        }
+    }
 }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
