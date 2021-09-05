@@ -27,7 +27,7 @@ import com.example.androiddevchallenge.ui.theme.DevChallengeScaffold
 import com.example.androiddevchallenge.ui.utils.LocalSysUiController
 import com.example.androiddevchallenge.ui.utils.SystemUiController
 import com.example.androiddevchallenge.ui.welcome.WelcomeScreen
-import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.ProvideWindowInsets
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
