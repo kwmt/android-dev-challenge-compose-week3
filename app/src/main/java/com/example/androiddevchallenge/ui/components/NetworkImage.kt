@@ -16,16 +16,22 @@
 package com.example.androiddevchallenge.ui.components
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.ImagePainter
+import coil.compose.rememberImagePainter
+import coil.transform.CircleCropTransformation
 import com.example.androiddevchallenge.ui.theme.DevChallengeTheme
-import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
 fun NetworkImage(
@@ -35,23 +41,24 @@ fun NetworkImage(
     contentScale: ContentScale = ContentScale.Crop,
     placeholderColor: Color? = DevChallengeTheme.colors.onSecondary
 ) {
-    CoilImage(
-        data = url,
-        modifier = modifier.aspectRatio(17f / 12f),
-        contentDescription = contentDescription,
-        contentScale = contentScale,
-        loading = {
-            if (placeholderColor != null) {
-                Spacer(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(placeholderColor)
-                )
-            }
-        }
-    )
+//    Image(
+//        data = url,
+//        modifier = modifier.aspectRatio(17f / 12f),
+//        contentDescription = contentDescription,
+//        contentScale = contentScale,
+//        loading = {
+//            if (placeholderColor != null) {
+//                Spacer(
+//                    modifier = Modifier
+//                        .fillMaxSize()
+//                        .background(placeholderColor)
+//                )
+//            }
+//        }
+//    )
 }
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun DrawableResImage(
     modifier: Modifier = Modifier,
@@ -60,19 +67,16 @@ fun DrawableResImage(
     contentScale: ContentScale = ContentScale.Crop,
     placeholderColor: Color? = DevChallengeTheme.colors.onSecondary
 ) {
-    CoilImage(
-        data = drawableRes,
-        modifier = modifier,
-        contentDescription = contentDescription,
-        contentScale = contentScale,
-        loading = {
-            if (placeholderColor != null) {
-                Spacer(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(placeholderColor)
-                )
+    // Advanced
+    Image(
+        painter = rememberImagePainter(
+            data = drawableRes,
+            builder = {
+                transformations(CircleCropTransformation())
             }
-        }
+        ),
+        contentScale = contentScale,
+        contentDescription = contentDescription,
+        modifier = modifier
     )
 }
